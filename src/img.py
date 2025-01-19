@@ -10,7 +10,7 @@ class Image:
         self.path = path
         self.image = pl.open(path)
 
-    def wopen(self) -> pl.Image:
+    def w_open(self) -> pl.Image:
         """Returns a writable image, which will be used in
         the dithering algorithm"""
         return pl.open("w", self.path)
