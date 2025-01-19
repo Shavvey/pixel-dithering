@@ -1,5 +1,5 @@
 from PIL import Image as pl
-from dither import *
+from dtype import DitherType
 
 
 class Image:
@@ -16,12 +16,24 @@ class Image:
         the dithering algorithm"""
         return pl.open("w", self.path)
 
-    def dither(self, type: DitherType | None) -> pl.Image:
-        """Modify the image to produce the final dithering result"""
-        i = pl.new("RGB", (200, 200), 1)
-        return i
+    def dither(self, type: DitherType | None):
+        """apply a dither to the image given an algorithm
+        that should be specified using `DitherType`"""
+        if type == None:
+            # call default dither algorithm
+            pass
+        match type:
+            case Bayer:
+                pass
 
     def show(self, name: str | None) -> None:
         """Simple method to show resulting image,
         uses an option `name` to name the window of the image"""
         self.image.show(name)
+
+    def grayscale(self):
+        with self.w_open() as i:
+            for x in range(i.width):
+                for y in range(i.height):
+                    pixel = i.getpixel((x, y))
+                    print(pixel)
