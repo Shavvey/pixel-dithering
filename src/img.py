@@ -16,11 +16,12 @@ class Image:
         the dithering algorithm"""
         return pl.open("w", self.path)
 
-    def dither(self, type: DitherType) -> pl.Image:
+    def dither(self, type: DitherType | None) -> pl.Image:
         """Modify the image to produce the final dithering result"""
         i = pl.new("RGB", (200, 200), 1)
         return i
 
-    def show(self) -> None:
-        """Simple method to show resulting image"""
-        self.image.show()
+    def show(self, name: str | None) -> None:
+        """Simple method to show resulting image,
+        uses an option `name` to name the window of the image"""
+        self.image.show(name)

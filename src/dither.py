@@ -1,4 +1,5 @@
 from enum import Enum
+from img import Image
 
 
 class DitherType(Enum):
@@ -7,3 +8,8 @@ class DitherType(Enum):
     available for use"""
 
     pass
+
+
+def dither(img: Image):
+    with img.w_open() as i:
+        pass
