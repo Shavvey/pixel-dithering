@@ -1,8 +1,9 @@
-import img as img
+from img import Image
 
 
 def main():
-    pass
+    i = Image("images/example.png")
+    i.show()
 
 
 if __name__ == "__main__":
