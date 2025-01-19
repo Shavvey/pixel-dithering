@@ -11,10 +11,10 @@ class Image:
         self.path = path
         self.image = pl.open(path)
 
-    def w_open(self) -> pl.Image:
+    def r_open(self) -> pl.Image:
         """Returns a writable image, which will be used in
         the dithering algorithm"""
-        return pl.open("w", self.path)
+        return pl.open(self.path)
 
     def dither(self, type: DitherType | None):
         """apply a dither to the image given an algorithm
@@ -32,8 +32,15 @@ class Image:
         self.image.show(name)
 
     def grayscale(self):
-        with self.w_open() as i:
+        """Provides a simple grayscale operation to a given image"""
+        with self.r_open() as i:
             for x in range(i.width):
                 for y in range(i.height):
                     pixel = i.getpixel((x, y))
-                    print(pixel)
+                    avg = pixel[0] + pixel[1] + pixel[2] // 3
+                    grayscale_pixel = (avg, avg, avg)
+                    i.putpixel(
+                        (x, y), grayscale_pixel
+                    )  # put grayscale version of pixel into image
+        # save new image
+        self.image = i
