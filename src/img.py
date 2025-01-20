@@ -1,5 +1,6 @@
 from PIL import Image as pl
 from dtype import DitherType
+import math as m
 
 
 class Image:
@@ -40,8 +41,10 @@ class Image:
             for x in range(i.width):
                 for y in range(i.height):
                     pixel = i.getpixel((x, y))
-                    avg = pixel[0] + pixel[1] + pixel[2] // 3
-                    grayscale_pixel = (avg, avg, avg)
+                    gray = int(
+                        0.2989 * pixel[0] + 0.5870 * pixel[1] + 0.1140 * pixel[2]
+                    )
+                    grayscale_pixel = (gray, gray, gray)
                     i.putpixel(
                         (x, y), grayscale_pixel
                     )  # put grayscale version of pixel into image
