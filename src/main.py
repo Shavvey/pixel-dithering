@@ -4,7 +4,7 @@ from img import Image
 def main():
     """Main method"""
     i = Image("images/example.jpg")  # create image from file path
-    i.grayscale()
+    i.image = i.grayscale()  # make grayscale image
     i.show("grayscale_example")
 
 

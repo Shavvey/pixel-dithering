@@ -10,3 +10,4 @@ class DitherType(Enum):
 
     Default = 1
     Bayer = 2
+    RandomNoise = 3
