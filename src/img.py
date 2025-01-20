@@ -1,6 +1,5 @@
 from PIL import Image as pl
 from dtype import DitherType
-import math as m
 
 
 class Image:
