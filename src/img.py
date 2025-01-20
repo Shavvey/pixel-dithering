@@ -1,18 +1,41 @@
 from PIL import Image as pl
 from dtype import DitherType
+from typing import Self
 
 
 class Image:
     path: str = ""  # path to current image
     image: pl.Image  # loaded image to use dithering
+    index: tuple[int, int]
 
     def __init__(self, path: str, image: pl.Image | None = None) -> None:
         """Creates the initial `Image` object given a relative path"""
         self.path = path
+        self.index = (0, 0)  # init index to begginning of image
         if image != None:
             self.image = image
         else:
             self.image = pl.open(path)
+
+    def __iter__(self) -> Self:
+        return self
+
+    def __next__(self) -> Self:
+        if (
+            self.index[0] >= self.image.width - 1
+            and self.index[1] >= self.image.height - 1
+        ):
+            raise StopIteration
+        prev = self.index
+        if self.index[0] < self.image.width - 1:
+            self.index = (prev[0] + 1, prev[1])
+            return self
+        else:
+            self.index = (0, prev[1] + 1)
+        return self
+
+    def get_pixel(self) -> tuple[int, int, int]:
+        return self.image.getpixel(self.index)
 
     def r_open(self) -> pl.Image:
         """Returns undeerlying PIL image, which will be used in
@@ -49,3 +72,7 @@ class Image:
                     )  # put grayscale version of pixel into image
         # save new image
         return i
+
+    def test(self):
+        for pixel in self:
+            print(pixel.get_pixel())
