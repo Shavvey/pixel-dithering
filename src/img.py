@@ -1,6 +1,6 @@
 from PIL import Image as pl
 from dtype import DitherType
-from typing import Self, List
+from typing import Self
 import math as m
 
 
@@ -79,7 +79,7 @@ class Image:
             case Bayer:
                 pass
 
-    def show(self, name: str | None) -> None:
+    def show(self, name: str | None = None) -> None:
         """Simple method to show resulting image,
         uses an option `name` to name the window of the image"""
         self.image.show(name)
