@@ -9,13 +9,14 @@ class Image:
     image: pl.Image  # loaded image to use dithering
     index: tuple[int, int]
 
-    def __init__(self, path: str, image: pl.Image | None = None) -> None:
+    def __init__(self, path: str | None, image: pl.Image | None = None) -> None:
         """Creates the initial `Image` object given a relative path"""
-        self.path = path
+
         self.index = (0, 0)  # init index to begginning of image
         if image != None:
             self.image = image
-        else:
+        elif path != None:
+            self.path = path
             self.image = pl.open(path)
 
     def __iter__(self) -> Self:
@@ -85,24 +86,10 @@ class Image:
         self.image.show(name)
 
     def to_grayscale(self) -> "Image":
-        """Provides a copied image that is grayscale"""
-        with self.r_open() as i:
-            for x in range(i.width):
-                for y in range(i.height):
-                    pixel = i.getpixel((x, y))
-                    gray = int(
-                        0.2989 * pixel[0] + 0.5870 * pixel[1] + 0.1140 * pixel[2]
-                    )
-                    grayscale_pixel = (gray, gray, gray)
-                    i.putpixel(
-                        (x, y), grayscale_pixel
-                    )  # put grayscale version of pixel into image
-        # return back image
-        return Image(self.path, i)
-
-    def make_grayscale(self):
-        """Overwrites underlying image to grayscale"""
-        for pixel in self:
+        """Provides a copy of the image to with an applied grayscale"""
+        i = Image(None, self.image)
+        for pixel in i:
             p = pixel.get_pixel()
             gray = int(0.2989 * p[0] + 0.5870 * p[1] + 0.1140 * p[2])
             pixel.put_pixel((gray, gray, gray))
+        return i
