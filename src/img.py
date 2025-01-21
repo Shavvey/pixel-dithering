@@ -90,6 +90,6 @@ class Image:
         i = Image(None, self.image)
         for pixel in i:
             p = pixel.get_pixel()
-            gray = int(0.2989 * p[0] + 0.5870 * p[1] + 0.1140 * p[2])
-            pixel.put_pixel((gray, gray, gray))
+            gray_scale = int(0.2989 * p[0] + 0.5870 * p[1] + 0.1140 * p[2])
+            pixel.put_pixel((gray_scale, gray_scale, gray_scale))
         return i
