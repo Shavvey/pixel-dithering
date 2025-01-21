@@ -4,7 +4,7 @@ from img import Image
 def main():
     """Main method"""
     i = Image("images/input/example2.jpg")  # create image from file path
-    i.test()
+    i.to_grayscale().show(None)
 
 
 if __name__ == "__main__":
