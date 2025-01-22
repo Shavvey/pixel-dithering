@@ -1,6 +1,7 @@
 from PIL import Image as pl
 from dtype import DitherType
 from typing import Self
+from pixel import Pixel
 import math as m
 
 
@@ -38,7 +39,7 @@ class Image:
             self.index = (0, prev[1] + 1)
         return self
 
-    def get_pixel(self, index: tuple[int, int] | None = None) -> tuple[int, int, int]:
+    def get_pixel(self, index: tuple[int, int] | None = None) -> Pixel:
         """Gets a pixel from the image,
         either uses the internal index, or custom specified index inside args"""
         if index == None:
@@ -55,9 +56,7 @@ class Image:
             pixel = self.image.getpixel(index)
             return m.sqrt(pixel[0] ^ 2 + pixel[1] ^ 2 + pixel[3] ^ 3)
 
-    def put_pixel(
-        self, pixel: tuple[int, int, int], index: tuple[int, int] | None = None
-    ):
+    def put_pixel(self, pixel: Pixel, index: tuple[int, int] | None = None):
         """Puts a pixel into the image, either using the index tracked inside `self.index`or a
         optionally specified other index as a parameter"""
         if index == None:
@@ -80,7 +79,7 @@ class Image:
             case Bayer:
                 pass
 
-    def show(self, name: str | None = None) -> None:
+    def show(self, name: str | None = None):
         """Simple method to show resulting image,
         uses an option `name` to name the window of the image"""
         self.image.show(name)
