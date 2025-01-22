@@ -1,5 +1,5 @@
 from img import Image
 
 
-def bayer(img: Image) -> Image:
-    pass
+def bayer(img: Image) -> "Image":
+    return img

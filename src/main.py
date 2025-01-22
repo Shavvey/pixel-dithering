@@ -1,7 +1,7 @@
 from img import Image
 
 
-def main():
+def main() -> None:
     """Main method"""
     i = Image("images/input/example2.jpg")  # create image from file path
     i.to_grayscale().show()

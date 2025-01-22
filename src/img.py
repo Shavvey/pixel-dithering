@@ -58,8 +58,8 @@ class Image:
     def put_pixel(
         self, pixel: tuple[int, int, int], index: tuple[int, int] | None = None
     ):
-        """Puts a pixel into the image, either using the index tracked inside `self.index` our a
-        optionally specified other index"""
+        """Puts a pixel into the image, either using the index tracked inside `self.index`or a
+        optionally specified other index as a parameter"""
         if index == None:
             self.image.putpixel(self.index, pixel)
         else:
@@ -87,9 +87,12 @@ class Image:
 
     def to_grayscale(self) -> "Image":
         """Provides a copy of the image to with an applied grayscale"""
+        # duplicate image pixel content
         i = Image(None, self.image)
         for pixel in i:
             p = pixel.get_pixel()
+            # weighted average of rgb channel content that biases green
             gray_scale = int(0.2989 * p[0] + 0.5870 * p[1] + 0.1140 * p[2])
+            # replace pixel w/ new gray scale value
             pixel.put_pixel((gray_scale, gray_scale, gray_scale))
-        return i
+        return i  # return grayscaled image back
