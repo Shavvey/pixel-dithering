@@ -1,7 +1,7 @@
 from PIL import Image as pl
 from dtype import DitherType
 from typing import Self
-from pixel import Pixel
+from pixel import Pixel, distance
 import math as m
 
 
@@ -95,3 +95,20 @@ class Image:
             # replace pixel w/ new gray scale value
             pixel.put_pixel((gray_scale, gray_scale, gray_scale))
         return i  # return grayscaled image back
+
+    def to_quantize(self, palette: list[Pixel]) -> "Image":
+        """quantize the image given as set number of pixel/colors
+        given by a list of pixels, `palette`"""
+        min: float = 1000.0
+        pixel: Pixel = (0, 0, 0)
+        i = Image(None, self.image)
+        for image_pixel in i:
+            p = image_pixel.get_pixel()
+            for palette_color in palette:
+                d = distance(p, palette_color)
+                if d < min:
+                    min = d  # make distance new min
+                    pixel = palette_color  # save palette color as new pixel
+            print(f"New min distance: {min}")
+            image_pixel.put_pixel(pixel)
+        return i
