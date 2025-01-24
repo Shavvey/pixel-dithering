@@ -10,3 +10,6 @@ def distance(a, b: "Pixel") -> float:
 
 BLACK: Pixel = (0,0,0)
 WHITE: Pixel = (255,255,255)
+RED: Pixel = (255,0,0)
+GREEN: Pixel = (0,255,0)
+BLUE: Pixel = (0,0,255)

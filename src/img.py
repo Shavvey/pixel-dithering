@@ -100,7 +100,7 @@ class Image:
         """quantize the image given as set number of pixel/colors
         given by a list of pixels, `palette`
 
-        :param palette - a list of colors that can represent the original pixel"""
+        :`param` palette - a list of colors that can represent the original pixel"""
         i = Image(None, self.image)
         for image_pixel in i:
             pixel: Pixel = (0, 0, 0)
