@@ -11,7 +11,10 @@ class Image:
     index: tuple[int, int]
 
     def __init__(self, path: str | None, image: pl.Image | None = None) -> None:
-        """Creates the initial `Image` object given a relative path"""
+        """Creates the initial `Image` object given a relative path
+
+        :param `path`: path to the original image (png, jpg, whatever
+        :param `image`: a PIL image, optional"""
 
         self.index = (0, 0)  # init index to begginning of image
         if image != None:
@@ -21,11 +24,13 @@ class Image:
             self.image = pl.open(path)
 
     def __iter__(self) -> Self:
+        """Used a tracked index to return pixels inside image"""
         self.index = (0, 0)  # calling next which advance the index,
         # which will point to a different pixel inside the image
         return self
 
     def __next__(self) -> Self:
+        """Just increments tracked index"""
         width = self.image.width - 1
         height = self.image.height - 1
 
@@ -41,14 +46,22 @@ class Image:
 
     def get_pixel(self, index: tuple[int, int] | None = None) -> Pixel:
         """Gets a pixel from the image,
-        either uses the internal index, or custom specified index inside args"""
+        either uses the internal index, or custom specified index inside args
+
+        :param `index`: a index that specifies the pixel in a image - (0,0) corresponds to upper right,
+        optional arg
+        """
         if index == None:
             return self.image.getpixel(self.index)
         else:
             return self.image.getpixel(index)
 
     def get_brightness(self, index: tuple[int, int] | None = None) -> float:
-        """Get brightness of current pixel, optionally uses a specified index"""
+        """Get brightness of current pixel, optionally uses a specified index
+
+        :param `index`: a index that specifies the pixel in a image - (0,0) corresponds to upper right,
+        optional arg
+        """
         if index == None:
             pixel = self.image.getpixel(self.index)
             return m.sqrt(pixel[0] ^ 2 + pixel[1] ^ 2 + pixel[3] ^ 3)
@@ -58,7 +71,12 @@ class Image:
 
     def put_pixel(self, pixel: Pixel, index: tuple[int, int] | None = None):
         """Puts a pixel into the image, either using the index tracked inside `self.index`or a
-        optionally specified other index as a parameter"""
+        optionally specified other index as a parameter
+
+        :param `index`: a index that specifies the pixel in a image - (0,0) corresponds to upper right,
+        optional arg
+        :param `pixel`: tuple that represents an standard rgb pixel
+        """
         if index == None:
             self.image.putpixel(self.index, pixel)
         else:
@@ -100,7 +118,7 @@ class Image:
         """quantize the image given as set number of pixel/colors
         given by a list of pixels, `palette`
 
-        :`param` palette - a list of colors that can represent the original pixel"""
+        :param `palette`: a list of colors that can represent the original pixel"""
         i = Image(None, self.image)
         for image_pixel in i:
             pixel: Pixel = (0, 0, 0)
