@@ -10,7 +10,7 @@ def random_noise(img: Image, noise: int = 200) -> "Image":
 
     :param `img`: original image to quantize w/ random noise"""
     palette: list[Pixel] = [BLACK, WHITE]
-    i = Image(None, img.image)
+    i = img
     for image_pixel in i:
         pixel: Pixel = (0, 0, 0)
         min: float = 1000.0  # pick a pixel such that the

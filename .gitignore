@@ -2,3 +2,4 @@ src/__pycache__
 .DS_Store
 todo.md
 **/__pycache__/**
+src/dither/__pycache__
