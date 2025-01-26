@@ -5,8 +5,8 @@
 ![random_noise example](images/output/example2.jpg)
 
 Dithering is an older technique to provide detail to a image by intentionally applying
-some form of "noise." There a many different forms of dithering (and they are not even
-exclusive to images as some older lossy formats of audio recordings use them). This simple
+some form of "noise." There are many different forms of dithering (and they are not even
+exclusive to images - some older lossy formats of audio recordings use them). This simple
 python script will provide some simple dithering algorithms, usually applied to monochromatic
 images (maybe I will figure out some color pallete techniques later to make the images more
 interesting)
