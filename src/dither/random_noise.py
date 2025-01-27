@@ -3,7 +3,7 @@ from pixel import *
 import random as r
 
 
-def random_noise(img: Image, noise: int = 200) -> "Image":
+def random_noise(img: Image, noise: int = 200) -> Image:
     """Uses black-white quantization,
     but will introduce random noise to produce a
     more smoother (and weirder) image
