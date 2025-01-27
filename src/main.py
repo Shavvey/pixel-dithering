@@ -6,7 +6,6 @@ import dither.random_noise as r
 def main():
     """Main method"""
     i = Image("images/input/example2.jpg")  # create image from file path
-    # i.to_quantize([BLACK, WHITE]).show()
     r.random_noise(i).show()
 
 
