@@ -13,3 +13,9 @@ WHITE: Pixel = (255,255,255)
 RED: Pixel = (255,0,0)
 GREEN: Pixel = (0,255,0)
 BLUE: Pixel = (0,0,255)
+# careful! depending on the color space used,
+# the colors do not scale linearly, that is a exact
+# 50,50,50 mix of rgb values is not always a perfect 
+# - what would be intutively expected
+
+#TODO: create a linear conversion to sRGB??
