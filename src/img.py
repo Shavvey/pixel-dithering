@@ -30,7 +30,8 @@ class Image:
         return self
 
     def __next__(self) -> Self:
-        """Just increments tracked index"""
+        """Increments the tracked index, which points to a new pixel inside image,
+        raises `StopIteration` if the tracked index passes final dimensions of image"""
         width = self.image.width - 1
         height = self.image.height - 1
 
@@ -89,7 +90,10 @@ class Image:
 
     def dither(self, type: DitherType | None):
         """apply a dither to the image given an algorithm
-        that should be specified using `DitherType`"""
+        that should be specified using `DitherType`
+
+        :param `type`: a enumeration type that specifies the type
+        of dithering algorithms that are available to the image"""
         if type == None:
             # call default dither algorithm (i dont have one yet!)
             pass
@@ -99,7 +103,10 @@ class Image:
 
     def show(self, name: str | None = None):
         """Simple method to show resulting image,
-        uses an option `name` to name the window of the image"""
+        uses an option `name` to name the window of the image
+
+        :param `name`: the name of the image window being created, optional argument
+        that is `None` by default"""
         self.image.show(name)
 
     def to_grayscale(self) -> "Image":

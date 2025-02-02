@@ -4,7 +4,7 @@ type Matrix = list[list[int]]  # Nx2 matrix type
 
 def mult_plus_sum(a: int, b: int, n: int) -> int:
     """ A recursive sum of an expression of the form a*n + b,
-    where a is the multiplication term, and b is the plus term"""
+    where `a` is the multiplication term, and `b` is the plus term"""
     if n == 0:
        return 0
     else:
