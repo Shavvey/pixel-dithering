@@ -5,9 +5,9 @@ class Matrix:
         self.m = m
 
     def to_string(self) -> str:
-        s = ""
+        s = "\n"
         for rows in self.m:
-            s = s + "\n{"  # open matrix brackets
+            s = s + "{"  # open matrix brackets
             for cols in rows:
                 s = s + f" {cols} "
             s = s + "}\n"
