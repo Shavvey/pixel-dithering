@@ -1,9 +1,14 @@
-type Matrix = list[list[int]]
+class Matrix:
+    m: list[list[int]]
 
-def to_string(m: Matrix) -> str:
-    s = "{"
-    for _ in m:
-        for columns in m:
-            s = s + f" {columns} "
-        s = s + "\n}"
-    return s
+    def __init__(self, m: list[list[int]]):
+        self.m = m
+
+    def to_string(self) -> str:
+        s = ""
+        for rows in self.m:
+            s = s + "\n{"  # open matrix brackets
+            for cols in rows:
+                s = s + f" {cols} "
+            s = s + "}\n"
+        return s
