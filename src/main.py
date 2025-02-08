@@ -6,8 +6,8 @@ from matrix import Matrix
 
 def main():
     """Main method"""
-    # i = Image("images/input/example2.jpg")  # create image from file path
-    # r.random_noise(i).show()  # use random noise dithering method
+    i = Image("images/input/example2.jpg")  # create image from file path
+    r.random_noise(i).show()  # use random noise dithering method
     m = Matrix([[1, 0], [0, 1]])
     print(f"String representation of the matrix:{m.to_string()}")
 

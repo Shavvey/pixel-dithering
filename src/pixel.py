@@ -27,6 +27,18 @@ class Pixel:
         """Give back primitive tuple represntation of pixel"""
         return (self.r, self.b, self.g)
 
+    @staticmethod
+    def from_tuple(t: tuple[int, int, int]) -> "Pixel":
+        """Create a new pixel from a 3-tuple value
+
+        :param `t`: a 3 memeber tuple to copy the rgb values
+        """
+        p = Pixel(0, 0, 0)
+        p.r = t[0]
+        p.g = t[1]
+        p.b = t[2]
+        return p
+
 
 BLACK = Pixel(0, 0, 0)
 WHITE = Pixel(255, 255, 255)

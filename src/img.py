@@ -53,9 +53,9 @@ class Image:
         optional arg
         """
         if index == None:
-            return self.image.getpixel(self.index)
+            return Pixel.from_tuple(self.image.getpixel(self.index))
         else:
-            return self.image.getpixel(index)
+            return Pixel.from_tuple(self.image.getpixel(index))
 
     def get_brightness(self, index: tuple[int, int] | None = None) -> float:
         """Get brightness of current pixel, optionally uses a specified index
