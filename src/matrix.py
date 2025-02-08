@@ -1,7 +1,4 @@
 class Matrix(list[list[int]]):
-    def __init__(self, m: list[list[int]]):
-        self = m
-
     def to_string(self) -> str:
         s = "\n"
         for rows in self:

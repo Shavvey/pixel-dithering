@@ -3,16 +3,28 @@ import math as m
 
 class Pixel:
     def distance(self, other: "Pixel") -> float:
+        """Calculate euclidean distance between two pixel using pythagorean theorem
+
+        :param `other`: other pixel/endpoint to calculate distance to
+        """
         return m.sqrt(
             (self.r - other.r) ** 2 + (self.g - other.g) ** 2 + (self.b - other.b) ** 2
         )
 
     def __init__(self, r: int, g: int, b: int) -> None:
+        """Create new instance of pixel class by using rgb values
+
+        :param `r`: red value
+        :param `g`: green value
+        :param `b`: blue value
+        """
+
         self.r = r
         self.g = g
         self.b = b
 
     def to_tuple(self) -> tuple[int, int, int]:
+        """Give back primitive tuple represntation of pixel"""
         return (self.r, self.b, self.g)
 
 
