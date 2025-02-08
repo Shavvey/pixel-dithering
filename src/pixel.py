@@ -1,8 +1,7 @@
 import math as m
 
-
-type Pixel = tuple[int, int, int] # alias the type pixel as just a 3 memeber tuple with rgb values
-
+# alias the type pixel as just a 3-tuple of rgb values
+type Pixel = tuple[int, int, int] 
 def distance(a, b: "Pixel") -> float:
     # defined a euclidean distance to using pythagorean theorem
     # this is used for quantization methods (where a pixel values are collapse into a smaller set)
