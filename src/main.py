@@ -1,5 +1,5 @@
 from img import Image
-from pixel import *
+from pixel import Pixel
 import dither.random_noise as r
 from matrix import Matrix
 

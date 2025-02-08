@@ -1,7 +1,7 @@
 from PIL import Image as pl
 from dtype import DitherType
 from typing import Self
-from pixel import Pixel, distance
+from pixel import Pixel
 import math as m
 
 
@@ -79,9 +79,9 @@ class Image:
         :param `pixel`: tuple that represents an standard rgb pixel
         """
         if index == None:
-            self.image.putpixel(self.index, pixel)
+            self.image.putpixel(self.index, pixel.to_tuple())
         else:
-            self.image.putpixel(index, pixel)
+            self.image.putpixel(index, pixel.to_tuple())
 
     def r_open(self) -> pl.Image:
         """Returns undeerlying PIL image, which will be used in
@@ -117,9 +117,10 @@ class Image:
         for pixel in i:
             p = pixel.get_pixel()
             # weighted average of rgb channel content that biases green
-            gray_scale = int(0.2989 * p[0] + 0.5870 * p[1] + 0.1140 * p[2])
+            gray_scale = int(0.2989 * p.r + 0.5870 * p.g + 0.1140 * p.b)
             # replace pixel w/ new gray scale value
-            pixel.put_pixel((gray_scale, gray_scale, gray_scale))
+            gray = Pixel(gray_scale, gray_scale, gray_scale)
+            pixel.put_pixel(gray)
         return i  # return grayscaled image back
 
     def to_quantize(self, palette: list[Pixel]) -> "Image":
@@ -129,12 +130,12 @@ class Image:
         :param `palette`: a list of colors that can represent the original pixel"""
         i = Image(None, self.image)
         for image_pixel in i:
-            pixel: Pixel = (0, 0, 0)
+            pixel = Pixel(0, 0, 0)
             min: float = 1000.0  # pick a pixel such that the
             # euclidean distance between palette pixel and original pixel is minimized
             p = image_pixel.get_pixel()
             for palette_color in palette:
-                d = distance(p, palette_color)
+                d = p.distance(palette_color)
                 if d < min:
                     min = d  # make distance new min
                     pixel = palette_color  # save palette color as new pixel
