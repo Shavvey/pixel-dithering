@@ -27,6 +27,9 @@ class Pixel:
         """Give back primitive tuple represntation of pixel"""
         return (self.r, self.b, self.g)
 
+    def get_brightness(self) -> float:
+        return 0
+
     @staticmethod
     def from_tuple(t: tuple[int, int, int]) -> "Pixel":
         """Create a new pixel from a 3-tuple value
