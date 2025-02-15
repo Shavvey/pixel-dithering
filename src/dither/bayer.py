@@ -30,4 +30,8 @@ class Bayer:
                 [a10, a11]]
 
 def bayer(bayer: Bayer, img: Image) -> Image:
+    """Dithering algorithm that uses a Bayer matrix
+    param `bayer`: contructed Bayer matrix, based on different 'levels' 
+    param `img`: underlying image that we will used for bayer dithering
+    """
     return img

@@ -16,7 +16,7 @@ class Image:
         :param `path`: path to the original image (png, jpg, whatever
         :param `image`: a PIL image, optional"""
 
-        self.index = (0, 0)  # init index to begginning of image
+        self.index = (0, 0)  # init index to beginning of image
         if image != None:
             self.image = image
         elif path != None:
@@ -64,10 +64,12 @@ class Image:
         optional arg
         """
         if index == None:
-            pixel = self.image.getpixel(self.index)
+            pixel = self.image.getpixel(self.index)  # get pixel using track index
             return m.sqrt(pixel[0] ^ 2 + pixel[1] ^ 2 + pixel[3] ^ 3)
         else:
-            pixel = self.image.getpixel(index)
+            pixel = self.image.getpixel(
+                index
+            )  # get pixel using index specified in args
             return m.sqrt(pixel[0] ^ 2 + pixel[1] ^ 2 + pixel[3] ^ 3)
 
     def put_pixel(self, pixel: Pixel, index: tuple[int, int] | None = None):
@@ -84,7 +86,7 @@ class Image:
             self.image.putpixel(index, pixel.to_tuple())
 
     def r_open(self) -> pl.Image:
-        """Returns undeerlying PIL image, which will be used in
+        """Returns underlying PIL image, which will be used in
         the dithering algorithm"""
         return pl.open(self.path)
 
@@ -116,7 +118,8 @@ class Image:
         i = Image(None, self.image)
         for pixel in i:
             p = pixel.get_pixel()
-            # weighted average of rgb channel content that biases green
+            # weighted average of rgb channel content that biases green values
+            # source :https://en.wikipedia.org/wiki/Grayscale
             gray_scale = int(0.2989 * p.r + 0.5870 * p.g + 0.1140 * p.b)
             # replace pixel w/ new gray scale value
             gray = Pixel(gray_scale, gray_scale, gray_scale)

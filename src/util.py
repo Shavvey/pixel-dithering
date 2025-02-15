@@ -14,7 +14,7 @@ def save(img: Image, path: str | None = None):
             img.image.save(img.path)
             print(f"New image saved at: {img.path}")
         else:
-            print("Could not save, no path exists!")
+            print("Could not save image, no path exists!")
     else:
         img.image.save(path)
         print(f"New image saved at: {path}")
