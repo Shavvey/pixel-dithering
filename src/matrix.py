@@ -1,5 +1,5 @@
 class Matrix(list[list[int]]):
-    """2D matrix of integers, represented as a 2D list"""
+    """MxN generic matrix, represented as a 2D list"""
 
     def to_string(self) -> str:
         """Method that will turn the matrix into a string representation"""
