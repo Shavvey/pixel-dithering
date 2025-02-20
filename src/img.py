@@ -90,20 +90,6 @@ class Image:
         the dithering algorithm"""
         return pl.open(self.path)
 
-    def dither(self, type: DitherType = DitherType.Default):
-        """apply a dither to the image given an algorithm
-        that should be specified using `DitherType`
-
-        :param `type`: a enumeration type that specifies the type
-        of dithering algorithms that are available to the image"""
-        match type:
-            case DitherType.Default:
-                pass
-            case DitherType.Bayer:
-                pass
-            case _:  # wildcard default case
-                print("[ERROR]: Couldn't parse DitherType")
-
     def show(self, name: str | None = None):
         """Simple method to show resulting image,
         uses an option `name` to name the window of the image
