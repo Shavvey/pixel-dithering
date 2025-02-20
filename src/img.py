@@ -1,5 +1,4 @@
 from PIL import Image as pl
-from dtype import DitherType
 from typing import Self
 from pixel import Pixel
 import math as m
@@ -131,3 +130,21 @@ class Image:
             # print(f"New min distance: {min}")
             image_pixel.put_pixel(pixel)
         return i
+
+    def save(self, path: str | None = None):
+        """Util function that will save the image back to
+        the file given some path-like string `path`
+
+        :param `img`: Image object that contains path info
+        :param `path`: optional path that overides any stored path
+        info inside the Image"""
+        if path == None:
+            if self.path != None:
+                self.path = self.path.replace("input", "output")
+                self.image.save(self.path)
+                print(f"New image saved at: {self.path}")
+            else:
+                print("Could not save image, no path exists!")
+        else:
+            self.image.save(path)
+            print(f"New image saved at: {path}")

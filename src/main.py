@@ -1,11 +1,12 @@
 from img import Image
-from dither.random_noise import random_noise
+from dither.dither import dither
+from dtype import DitherType
 
 
 def main():
     """Main method"""
     i = Image("images/input/example2.jpg")  # create image from file path
-    random_noise(i).show()
+    dither(i, DitherType.Default).show()
 
 
 if __name__ == "__main__":
