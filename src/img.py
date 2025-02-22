@@ -28,7 +28,7 @@ class Image:
         # which will point to a different pixel inside the image
         return self
 
-    def __next__(self) -> Self:
+    def __next__(self) -> Pixel:
         """Increments the tracked index, which points to a new pixel inside image,
         raises `StopIteration` if the tracked index passes final dimensions of image"""
         width = self.image.width - 1
@@ -39,10 +39,10 @@ class Image:
         prev = self.index
         if self.index[0] < width:
             self.index = (prev[0] + 1, prev[1])
-            return self
+            return self.get_pixel((self.index[0], self.index[1]))
         else:
             self.index = (0, prev[1] + 1)
-        return self
+            return self.get_pixel((self.index[0], self.index[1]))
 
     def get_pixel(self, index: tuple[int, int] | None = None) -> Pixel:
         """Gets a pixel from the image,
@@ -102,13 +102,12 @@ class Image:
         # duplicate image pixel content
         i = Image(None, self.image)
         for pixel in i:
-            p = pixel.get_pixel()
             # weighted average of rgb channel content that biases green values
             # source :https://en.wikipedia.org/wiki/Grayscale
-            gray_scale = int(0.2989 * p.r + 0.5870 * p.g + 0.1140 * p.b)
+            gray_scale = int(0.2989 * pixel.r + 0.5870 * pixel.g + 0.1140 * pixel.b)
             # replace pixel w/ new gray scale value
             gray = Pixel(gray_scale, gray_scale, gray_scale)
-            pixel.put_pixel(gray)
+            i.put_pixel(gray)
         return i  # return grayscaled image back
 
     def quantize_image(self, palette: list[Pixel]) -> "Image":
@@ -117,9 +116,9 @@ class Image:
 
         :param `palette`: a list of colors that can represent the original pixel"""
         i = self  # copy over image
-        for image_pixel in i:
-            np = image_pixel.get_pixel().quantize(palette)
-            image_pixel.put_pixel(np)
+        for pixel in i:
+            np = pixel.quantize(palette)
+            i.put_pixel(np)  # put pixel using tracked index
             # quantize entire image by using pixel quantization
             # method across the entire image
         return i

@@ -23,6 +23,10 @@ class Pixel:
         self.g = g
         self.b = b
 
+    def __str__(self) -> str:
+        """Create string representation of pixel 3-tuple value"""
+        return f"({self.r},{self.g},{self.b})"
+
     def to_tuple(self) -> tuple[int, int, int]:
         """Give back primitive tuple represntation of pixel"""
         return (self.r, self.b, self.g)

@@ -11,7 +11,7 @@ def main():
     # print(b.matrix)
     # print(b.matrix.length())
     i = Image("images/input/example2.jpg")
-    i.quantize_image([WHITE, BLACK]).show()
+    i.to_grayscale().show()
 
 
 if __name__ == "__main__":
