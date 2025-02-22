@@ -43,7 +43,14 @@ class Pixel:
         return p
 
     def quantize(self, palette: list["Pixel"]) -> "Pixel":
-        return self
+        pixel = Pixel(0, 0, 0)
+        min: float = 10000.0  # find min, init from some large number
+        for color in palette:
+            d = self.distance(color)  # calc eulcidian distance
+            if d < min:
+                min = d  # find new min from eulcidian distance
+                pixel = color  # save color from min
+        return pixel
 
 
 # CONSTANTS

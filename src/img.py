@@ -111,24 +111,17 @@ class Image:
             pixel.put_pixel(gray)
         return i  # return grayscaled image back
 
-    def to_quantize(self, palette: list[Pixel]) -> "Image":
+    def quantize_image(self, palette: list[Pixel]) -> "Image":
         """quantize the image given as set number of pixel/colors
         given by a list of pixels, `palette`
 
         :param `palette`: a list of colors that can represent the original pixel"""
-        i = Image(None, self.image)
+        i = self  # copy over image
         for image_pixel in i:
-            pixel = Pixel(0, 0, 0)
-            min: float = 1000.0  # pick a pixel such that the
-            # euclidean distance between palette pixel and original pixel is minimized
-            p = image_pixel.get_pixel()
-            for palette_color in palette:
-                d = p.distance(palette_color)
-                if d < min:
-                    min = d  # make distance new min
-                    pixel = palette_color  # save palette color as new pixel
-            # print(f"New min distance: {min}")
-            image_pixel.put_pixel(pixel)
+            np = image_pixel.get_pixel().quantize(palette)
+            image_pixel.put_pixel(np)
+            # quantize entire image by using pixel quantization
+            # method across the entire image
         return i
 
     def save(self, path: str | None = None):
