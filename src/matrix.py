@@ -1,4 +1,4 @@
-class Matrix(list[list[int]]):
+class Matrix(list[list[float]]):
     """MxN generic matrix, represented as a 2D list"""
 
     def to_string(self) -> str:

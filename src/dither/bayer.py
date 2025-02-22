@@ -23,10 +23,10 @@ class Bayer:
         of the Bayer matrix, up to a certain level
 
         :param `level`: the associated level of the Bayer matrix"""
-        a00 = mult_plus_sum(4, 0, level)
-        a01 = mult_plus_sum(4, 2, level)
-        a10 = mult_plus_sum(4, 3, level)
-        a11 = mult_plus_sum(4, 1, level)
+        a00 = mult_plus_sum(4, 0, level) * (1 / 4**level)
+        a01 = mult_plus_sum(4, 2, level) * (1 / 4**level)
+        a10 = mult_plus_sum(4, 3, level) * (1 / 4**level)
+        a11 = mult_plus_sum(4, 1, level) * (1 / 4**level)
         return Matrix([[a00, a01], [a10, a11]])
 
 
