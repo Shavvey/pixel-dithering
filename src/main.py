@@ -1,12 +1,13 @@
 from img import Image
 from dither.dither import dither
 from dtype import DitherType
+from dither.bayer import Bayer
 
 
 def main():
     """Main method"""
-    i = Image("images/input/example2.jpg")  # create image from file path
-    dither(i, DitherType.Default).show()
+    b: Bayer = Bayer(1)
+    print(b.matrix)
 
 
 if __name__ == "__main__":
