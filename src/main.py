@@ -8,6 +8,7 @@ def main():
     """Main method"""
     b: Bayer = Bayer(1)
     print(b.matrix)
+    print(b.matrix.length())
 
 
 if __name__ == "__main__":

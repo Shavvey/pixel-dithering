@@ -20,3 +20,6 @@ class Matrix(list[list[float]]):
                 s = s + f" {cols} "
             s = s + "}\n"  # closing brackets, end row
         return s
+
+    def length(self) -> int:
+        return len(self[0])

@@ -1,5 +1,6 @@
 from img import Image
 from matrix import Matrix
+from pixel import WHITE, BLACK
 
 
 def mult_plus_sum(a: int, b: int, n: int) -> int:
@@ -33,12 +34,18 @@ class Bayer:
 def bayer(bayer: Bayer, img: Image) -> Image:
     """Dithering algorithm that uses a Bayer matrix
 
+    from Wikipedia, we would like to do somehting like this:
+    c' = palette_quantize(c + r x M(x mod n, y mod n) - 1/2)
+    c': new transformed color
+    M: threshold map, bayer matrix in our case
+    r: spread in color space (sRGB is not linear, remember?)
+
     param `bayer`: contructed Bayer matrix, based on different 'levels'
     param `img`: underlying image that we will used for bayer dithering
     """
+    i = img
     # return the closest color, compare brightness levels
-    for b in bayer.matrix:
-        # iter across image, use elements inside bayer matrix to dither??
-        for pixel in img:
-            pass
+    for image_pixel in i:
+        pixel = image_pixel.get_pixel()
+
     return img

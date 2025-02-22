@@ -42,7 +42,11 @@ class Pixel:
         p.b = t[2]
         return p
 
+    def quantize(self, palette: list["Pixel"]) -> "Pixel":
+        return self
 
+
+# CONSTANTS
 BLACK = Pixel(0, 0, 0)
 WHITE = Pixel(255, 255, 255)
 RED = Pixel(255, 0, 0)
