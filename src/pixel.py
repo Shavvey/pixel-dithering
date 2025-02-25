@@ -46,6 +46,11 @@ class Pixel:
         p.b = t[2]
         return p
 
+    def to_tuple(self) -> tuple[int, int, int]:
+        """Simple method to return original tuple value
+        that the `Pixel` class is built on top of"""
+        return (self.r, self.b, self.g)
+
     def quantize(self, palette: list["Pixel"]) -> "Pixel":
         pixel = Pixel(0, 0, 0)
         min: float = 10000.0  # find min, init from some large number

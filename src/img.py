@@ -44,6 +44,9 @@ class Image:
             self.index = (0, prev[1] + 1)
             return self.get_pixel((self.index[0], self.index[1]))
 
+    def get_index(self) -> tuple[int, int]:
+        return self.index
+
     def get_pixel(self, index: tuple[int, int] | None = None) -> Pixel:
         """Gets a pixel from the image,
         either uses the internal index, or custom specified index inside args

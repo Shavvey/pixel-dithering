@@ -44,8 +44,13 @@ def bayer(bayer: Bayer, img: Image) -> Image:
     param `img`: underlying image that we will used for bayer dithering
     """
     i = img
+    R = 1
+    LEN: int = bayer.matrix.length()  # used later
     # return the closest color, compare brightness levels
-    for image_pixel in i:
-        pixel = image_pixel.get_pixel()
-
+    for pixel in i:  # iter through pixel
+        index = i.get_index()
+        y = index[1] % LEN
+        x = index[0] % LEN
+        # NOTE: need to create add dunder method
+        # pixel = pixel + R * bayer.matrix[x][y]
     return img
