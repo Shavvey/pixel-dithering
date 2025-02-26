@@ -44,7 +44,7 @@ def bayer(bayer: Bayer, img: Image, palette: list[Pixel]) -> Image:
     param `bayer`: contructed Bayer matrix, based on different 'levels'
     param `img`: underlying image that we will used for bayer dithering
     """
-    i = img
+    i = Image(None, img.image)
     R = 255 // (2 ** (1.5 * palette.__len__()))
     LEN: int = bayer.matrix.length()  # used later
     # return the closest color, compare brightness levels
@@ -55,5 +55,5 @@ def bayer(bayer: Bayer, img: Image, palette: list[Pixel]) -> Image:
         # NOTE: need to create add dunder method
         pixel = pixel + round(R * bayer.matrix[x][y] - 1 / 2)
         pixel = pixel.quantize(palette)
-        i.put_pixel(pixel)
+        i.put_pixel(pixel.quantize(palette))
     return img

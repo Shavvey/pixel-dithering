@@ -118,7 +118,7 @@ class Image:
         given by a list of pixels, `palette`
 
         :param `palette`: a list of colors that can represent the original pixel"""
-        i = self  # copy over image
+        i = Image(None, self.image)  # copy over image
         for pixel in i:
             np = pixel.quantize(palette)
             i.put_pixel(np)  # put pixel using tracked index

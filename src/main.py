@@ -1,16 +1,17 @@
 from img import Image
 from dither.bayer import Bayer, bayer
-from pixel import BLACK, WHITE
+from palette import PASTEL, SEA_MOSS
+from pixel import WHITE, BLACK
 
 
 def main():
     """Main method"""
-    # b: Bayer = Bayer(1)
-    # print(b.matrix)
-    # print(b.matrix.length())
     i = Image("images/input/example2.jpg")
-    i = bayer(Bayer(1), i, [WHITE, BLACK])
-    i.show()
+    qi = i.quantize_image([WHITE, BLACK])
+    i = Image("images/input/example2.jpg")
+    bi = bayer(Bayer(1), i, [WHITE, BLACK])
+    bi.show()
+    qi.show()
 
 
 if __name__ == "__main__":
