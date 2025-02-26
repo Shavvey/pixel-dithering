@@ -27,9 +27,11 @@ class Pixel:
         """Create string representation of pixel 3-tuple value"""
         return f"({self.r},{self.g},{self.b})"
 
-    def to_tuple(self) -> tuple[int, int, int]:
-        """Give back primitive tuple represntation of pixel"""
-        return (self.r, self.b, self.g)
+    def __add__(self, i: int) -> "Pixel":
+        self.r += i
+        self.g += i
+        self.b += i
+        return self
 
     def get_brightness(self) -> float:
         return 0

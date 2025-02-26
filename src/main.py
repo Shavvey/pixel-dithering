@@ -1,8 +1,5 @@
 from img import Image
-from dither.dither import dither
-from dtype import DitherType
-from dither.bayer import Bayer
-from pixel import WHITE, BLACK
+from dither.bayer import Bayer, bayer
 
 
 def main():
@@ -11,7 +8,8 @@ def main():
     # print(b.matrix)
     # print(b.matrix.length())
     i = Image("images/input/example2.jpg")
-    i.to_grayscale().show()
+    i = bayer(Bayer(1), i)
+    i.show()
 
 
 if __name__ == "__main__":

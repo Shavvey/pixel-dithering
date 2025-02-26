@@ -1,6 +1,6 @@
 from img import Image
 from matrix import Matrix
-from pixel import WHITE, BLACK
+from pixel import WHITE, BLACK, Pixel
 
 
 def mult_plus_sum(a: int, b: int, n: int) -> int:
@@ -24,6 +24,7 @@ class Bayer:
         of the Bayer matrix, up to a certain level
 
         :param `level`: the associated level of the Bayer matrix"""
+        # TODO: make more general rule for NxN bayer matrices??
         a00 = mult_plus_sum(4, 0, level) * (1 / 4**level)
         a01 = mult_plus_sum(4, 2, level) * (1 / 4**level)
         a10 = mult_plus_sum(4, 3, level) * (1 / 4**level)
@@ -44,7 +45,7 @@ def bayer(bayer: Bayer, img: Image) -> Image:
     param `img`: underlying image that we will used for bayer dithering
     """
     i = img
-    R = 1
+    R = 255 // 12
     LEN: int = bayer.matrix.length()  # used later
     # return the closest color, compare brightness levels
     for pixel in i:  # iter through pixel
@@ -52,5 +53,7 @@ def bayer(bayer: Bayer, img: Image) -> Image:
         y = index[1] % LEN
         x = index[0] % LEN
         # NOTE: need to create add dunder method
-        # pixel = pixel + R * bayer.matrix[x][y]
+        pixel = pixel + round(R * bayer.matrix[x][y] - 1 / 2)
+        pixel = pixel.quantize([BLACK, WHITE])
+        i.put_pixel(pixel)
     return img
