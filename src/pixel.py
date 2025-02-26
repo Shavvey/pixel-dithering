@@ -28,13 +28,18 @@ class Pixel:
         return f"({self.r},{self.g},{self.b})"
 
     def __add__(self, i: int) -> "Pixel":
+        """Dudner method to quickly add values to pixels"""
         self.r += i
         self.g += i
         self.b += i
         return self
 
     def get_brightness(self) -> float:
-        return 0
+        """Get brightness of an individual pixel via a simple
+        euclidean distance, which will determine it's magnitude in
+        color space"""
+
+        return m.sqrt(self.r**2 + self.g**2 + self.b**2)
 
     @staticmethod
     def from_tuple(t: tuple[int, int, int]) -> "Pixel":
