@@ -7,11 +7,8 @@ from pixel import WHITE, BLACK
 def main():
     """Main method"""
     i = Image("images/input/example2.jpg")
-    qi = i.quantize_image([WHITE, BLACK])
-    i = Image("images/input/example2.jpg")
-    bi = bayer(Bayer(1), i, [WHITE, BLACK])
-    bi.show()
-    qi.show()
+    i.quantize_image([WHITE, BLACK]).show()
+    bayer(Bayer(1), i, [WHITE, BLACK]).show()
 
 
 if __name__ == "__main__":

@@ -103,7 +103,7 @@ class Image:
     def to_grayscale(self) -> "Image":
         """Provides a copy of the image to with an applied grayscale"""
         # duplicate image pixel content
-        i = Image(None, self.image)
+        i = Image(None, self.image.copy())
         for pixel in i:
             # weighted average of rgb channel content that biases green values
             # source :https://en.wikipedia.org/wiki/Grayscale
@@ -118,7 +118,7 @@ class Image:
         given by a list of pixels, `palette`
 
         :param `palette`: a list of colors that can represent the original pixel"""
-        i = Image(None, self.image)  # copy over image
+        i = Image(None, self.image.copy())  # copy over image
         for pixel in i:
             np = pixel.quantize(palette)
             i.put_pixel(np)  # put pixel using tracked index
