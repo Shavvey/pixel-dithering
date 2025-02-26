@@ -2,7 +2,7 @@
 
 ## Description
 
-![random_noise example](images/output/example2.jpg)
+![random_noise example](images/output/example2_moss.jpg)
 
 Dithering is an older technique to provide detail to a image by intentionally applying
 some form of "noise." There are many different forms of dithering (and they are not even
