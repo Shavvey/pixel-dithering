@@ -1,6 +1,6 @@
 from img import Image
 from matrix import Matrix
-from pixel import WHITE, BLACK, Pixel
+from pixel import Pixel
 
 
 def mult_plus_sum(a: int, b: int, n: int) -> int:
@@ -32,7 +32,7 @@ class Bayer:
         return Matrix([[a00, a01], [a10, a11]])
 
 
-def bayer(bayer: Bayer, img: Image) -> Image:
+def bayer(bayer: Bayer, img: Image, palette: list[Pixel]) -> Image:
     """Dithering algorithm that uses a Bayer matrix
 
     from Wikipedia, we would like to do somehting like this:
@@ -45,7 +45,7 @@ def bayer(bayer: Bayer, img: Image) -> Image:
     param `img`: underlying image that we will used for bayer dithering
     """
     i = img
-    R = 255 // 12
+    R = 255 // (2 ** (1.5 * palette.__len__()))
     LEN: int = bayer.matrix.length()  # used later
     # return the closest color, compare brightness levels
     for pixel in i:  # iter through pixel
@@ -54,6 +54,6 @@ def bayer(bayer: Bayer, img: Image) -> Image:
         x = index[0] % LEN
         # NOTE: need to create add dunder method
         pixel = pixel + round(R * bayer.matrix[x][y] - 1 / 2)
-        pixel = pixel.quantize([BLACK, WHITE])
+        pixel = pixel.quantize(palette)
         i.put_pixel(pixel)
     return img

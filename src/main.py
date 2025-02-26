@@ -1,5 +1,6 @@
 from img import Image
 from dither.bayer import Bayer, bayer
+from pixel import BLACK, WHITE
 
 
 def main():
@@ -8,7 +9,7 @@ def main():
     # print(b.matrix)
     # print(b.matrix.length())
     i = Image("images/input/example2.jpg")
-    i = bayer(Bayer(1), i)
+    i = bayer(Bayer(1), i, [WHITE, BLACK])
     i.show()
 
 
