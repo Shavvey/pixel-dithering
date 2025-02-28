@@ -1,13 +1,12 @@
 from img import Image
 from dither.bayer import Bayer, bayer
-from palette import PASTEL, SEA_MOSS
+from palette import HELLO_KITTY, RUST
 
 
 def main():
     """Main method"""
     i = Image("images/input/example2.jpg")
-    bi = bayer(Bayer(1), i, SEA_MOSS)
-    bi.save("images/output/example2_moss.jpg")
+    bi = bayer(Bayer(1), i, HELLO_KITTY)
     bi.show()
 
 

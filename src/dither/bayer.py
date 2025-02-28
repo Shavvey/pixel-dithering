@@ -47,7 +47,7 @@ def bayer(bayer: Bayer, img: Image, palette: list[Pixel]) -> Image:
     """
     i = Image(None, img.image)
     N = (1 / 3) * log2(palette.__len__())
-    R = round(255 / N)
+    R = round(255 / palette.__len__())
     LEN: int = bayer.matrix.length()  # used later
     # return the closest color, compare brightness levels
     for pixel in i:  # iter through pixel
@@ -55,7 +55,7 @@ def bayer(bayer: Bayer, img: Image, palette: list[Pixel]) -> Image:
         y = index[1] % LEN
         x = index[0] % LEN
         # NOTE: need to create add dunder method
-        pixel = pixel + round(125 * bayer.matrix[x][y] - 1 / 2)
+        pixel = pixel + round(R * bayer.matrix[x][y] - 1 / 2)
         pixel = pixel.quantize(palette)
         i.put_pixel(pixel)
     return img
