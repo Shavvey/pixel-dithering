@@ -62,7 +62,7 @@ class Image:
     def get_brightness(self, index: tuple[int, int] | None = None) -> float:
         """Get brightness of current pixel, optionally uses a specified index
 
-        :param `index`: a index that specifies the pixel in a image - (0,0) corresponds to upper right,
+        :param `index`: a index that specifies the pixel in a image - (0,0) corresponds to upper left,
         optional arg
         """
         if index == None:
@@ -78,7 +78,7 @@ class Image:
         """Puts a pixel into the image, either using the index tracked inside `self.index`or a
         optionally specified other index as a parameter
 
-        :param `index`: a index that specifies the pixel in a image - (0,0) corresponds to upper right,
+        :param `index`: a index that specifies the pixel in a image - (0,0) corresponds to upper left,
         optional arg
         :param `pixel`: tuple that represents an standard rgb pixel
         """
