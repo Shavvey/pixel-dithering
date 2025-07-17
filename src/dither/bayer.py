@@ -1,4 +1,3 @@
-from math import log2
 from img import Image
 from matrix import Matrix
 from pixel import Pixel

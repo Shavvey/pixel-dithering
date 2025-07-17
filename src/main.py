@@ -1,13 +1,12 @@
 from img import Image
-from dither.bayer import Bayer, bayer
-from palette import HELLO_KITTY, RUST, WINTER
+from dither.random_noise import random_noise
 
 
 def main():
     """Main method"""
-    i = Image("images/input/IMG_8814.jpg")
-    bi = bayer(Bayer(1), i, RUST)
-    bi.show()
+    i = Image("images/input/example.jpg")
+    i = random_noise(i)
+    i.show()
 
 
 if __name__ == "__main__":

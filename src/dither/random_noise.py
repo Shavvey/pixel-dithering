@@ -15,11 +15,11 @@ def random_noise(img: Image, noise: int = 120) -> Image:
         pixel = Pixel(0, 0, 0)
         min: float = 1000.0  # pick a pixel such that the
         # euclidean distance between palette pixel and original pixel is minimized
-        p = image_pixel.get_pixel()
+        p = image_pixel
         for palette_color in palette:
             d = p.distance(palette_color) + r.randint(-1 * noise, noise)
             if d < min:
                 min = d  # make distance new min
                 pixel = palette_color  # save palette color as new pixel
-        image_pixel.put_pixel(pixel)
+        i.put_pixel(pixel)
     return i
