@@ -14,10 +14,10 @@ interesting)
 
 ## Running the Project
 
-The project's main dependency is the `PIL` library, which needs to be installed using `pip` or `conda`--
-depending on what package manager you use for your python environment.
+The project's main dependency is the [Pillow](https://pillow.readthedocs.io/en/stable/) library, 
+which needs to be installed using pip or conda--depending on what package manager you use for your python environment.
 
-The project contains a `makefile`. To run the project, simply type the command:
+The project contains a makefile. To run the project, simply type the command:
 
 ```sh
 make run
