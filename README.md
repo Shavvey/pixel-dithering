@@ -9,7 +9,7 @@ some form of "noise." There are many different forms of dithering (and they are 
 exclusive to images - some older lossy formats of audio recordings use them). This simple
 python script will provide some dithering algorithms, like Bayer and random noise dithering,
 usually applied to monochromatic images
-(maybe I will figure out some color pallete techniques later to make the images more
+(maybe I will figure out some color palette techniques later to make the images more
 interesting)
 
 ## Running the Project
@@ -23,5 +23,5 @@ The project contains a makefile. To run the project, simply type the command:
 make run
 ```
 
-**NOTE:** A didn't come up with a good user interface yet, so you'll just have to read the code
+**NOTE:** I didn't come up with a good user interface yet, so you'll just have to read the code
 and the call the methods you would like to use.
